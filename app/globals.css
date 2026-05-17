@@ -1,9 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+import { NextResponse } from 'next/server';
 
-body {
-  font-family: sans-serif;
+export async function GET() {
+  const key = 'eb2283af275339d35d91ed19242c0cf0';
+  const url = 'https://v3.football.api-sports.io/fixtures?date=2026-05-16';
+  
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: new Headers({
+      'x-apisports-key': key,
+    }),
+  });
+  
+  const data = await response.json();
+  return NextResponse.json(data);
 }
